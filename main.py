@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from pybursts import pybursts
 
 # from twitch_chat_log_analyzer.api import TwitchClient
 from twitch_chat_log_analyzer.api_v5 import TwitchClientv5
@@ -11,10 +12,16 @@ from twitch_chat_log_analyzer.timestamps import (
     fetch_timestamps_from_file,
     format_timestamps,
 )
-from twitch_chat_log_analyzer.comments_search import write_search_results_for_ids
+from twitch_chat_log_analyzer.comments_search import (
+    write_search_results_for_ids,
+    search_chat_from_file,
+)
 
 from twitch_chat_log_analyzer.file_utils import create_dir, find
-from twitch_chat_log_analyzer.dataframes import convert_channel_comments_to_csv
+from twitch_chat_log_analyzer.dataframes import (
+    convert_comments_to_df,
+    get_comment_df_from_channel_video_id,
+)
 
 creds = "creds.json"
 
@@ -30,8 +37,38 @@ def write_results_for_channel(channel, search_string, case_sense=True):
     )
 
 
+# 673772949_PepoG
+# 641629487_PepoG_15m
+# 667467154_PepoG_15m
+# 656829047_PepoG_15m
+# 661515825_PepoG
+
 if __name__ == "__main__":
-    convert_channel_comments_to_csv("ludwig")
+    channel = "ludwig"
+    video_id = "673772949"
+
+    filename = f"./data/{channel}/comments/{video_id}/comments.json"
+    search_string = "PepoG"
+
+    results = search_chat_from_file(filename, search_string)
+
+    results_df = convert_comments_to_df(results)
+    results = list(results_df.content_offset_seconds)
+
+    possible_s = [1.5, 2, 3]
+    possible_gamma = [0.5, 1, 2, 3]
+    data = {
+        1.5: {},
+        2: {},
+        3: {},
+    }
+    for s in possible_s:
+        for gamma in possible_gamma:
+            pd.DataFrame(pybursts.kleinberg(results, s=s, gamma=gamma)).to_csv(f"{s}{gamma}.csv", index=False)
+
+    # comments_df = get_comment_df_from_channel_video_id(channel, video_id)
+
+    # Load comments.csv
 
     # 1. Turn json comment file to csv file
     #   - Turn json comment file to pandas dataframe
@@ -57,8 +94,6 @@ if __name__ == "__main__":
     # channel_id = "40934651"
 
     # archive's are past broadcasts
-
-    search_string = "hi youtube"
 
     # def filter_video_id(video_id):
     #     check_file = os.path.join(comments_dir, video_id, "comments.json")
