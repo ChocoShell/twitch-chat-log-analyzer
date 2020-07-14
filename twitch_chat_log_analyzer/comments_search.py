@@ -54,6 +54,10 @@ def write_search_results_for_file(
     )
 
     write_json_file(search_results, search_string_file)
+    path, head = os.path.split(search_string_file)
+    search_string_name = head.split(".")[0]
+    csv_search_file = os.path.join(path, f"{search_string_name}.csv")
+    comment_data_to_csv(search_results, csv_search_file)
 
     return search_string_file
 
