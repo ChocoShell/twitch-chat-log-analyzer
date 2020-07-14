@@ -48,7 +48,9 @@ Twitch VODs stay for 60 days
 
 Ideas
 
-- Implement [Burst Detection](https://nikkimarinsek.com/blog/kleinberg-burst-detection-algorithm)
+- [x] Implement [Burst Detection](https://nikkimarinsek.com/blog/kleinberg-burst-detection-algorithm)
+    - Note: Wasn't very useful because it didn't give weights to burst.  It gives a levels for higher bursts so some weight calculation can be made.  Good for creating clips though.
+    - Note: Used the FIRST algo in the paper, not the second one created by poster.
 
 NLP Ideas
 
