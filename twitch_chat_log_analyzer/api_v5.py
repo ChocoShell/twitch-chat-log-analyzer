@@ -6,9 +6,7 @@ from .json_utils import write_json_file
 
 class TwitchClientv5(TwitchAPI):
     def __init__(self, client_id):
-        self.headers = {
-            "Client-id": client_id
-        }
+        self.headers = {"Client-id": client_id}
 
     def get_chat_for_video(self, video_id, cursor=None):
         url = f"https://api.twitch.tv/v5/videos/{video_id}/comments"
@@ -31,7 +29,9 @@ class TwitchClientv5(TwitchAPI):
                     count += 1
                     print(f"Downloading {count}/{video_len}")
                 new_comments_dir = os.path.join(download_dir, video_id)
-                new_comments_dir_partial = os.path.join(download_dir, video_id, "partial")
+                new_comments_dir_partial = os.path.join(
+                    download_dir, video_id, "partial"
+                )
                 try:
                     os.mkdir(new_comments_dir)
                 except FileExistsError:
@@ -46,7 +46,9 @@ class TwitchClientv5(TwitchAPI):
                     lambda data: data["comments"],
                     lambda data: data["_next"],
                 )
-                write_json_file(complete_comments_data, f"{new_comments_dir}/comments.json")
+                write_json_file(
+                    complete_comments_data, f"{new_comments_dir}/comments.json"
+                )
             except Exception as err:
                 print(err)
 

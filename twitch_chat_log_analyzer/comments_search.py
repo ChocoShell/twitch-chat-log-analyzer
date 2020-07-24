@@ -80,4 +80,3 @@ def write_search_results_for_file(
     write_json_file(search_results, search_string_file)
 
     return search_string_file
-
