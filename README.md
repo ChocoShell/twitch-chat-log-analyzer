@@ -54,8 +54,15 @@ Ideas
 
 NLP Ideas
 
+- vectorize comments: https://towardsdatascience.com/understanding-nlp-word-embeddings-text-vectorization-1a23744f7223
 - [Create a topic model and see what topics it generates that
-correlate to what you're looking for.](https://towardsdatascience.com/text-classification-with-state-of-the-art-nlp-library-flair-b541d7add21f)
+correlate to what you're looking for.](https://towardsdatascience.com/covid-19-with-a-flair-2802a9f4c90f)
 - [Find examples of chats that fit the topics you are looking for and
-use those to train a text classifier to find other chats.](https://towardsdatascience.com/covid-19-with-a-flair-2802a9f4c90f)
+use those to train a text classifier to find other chats.](https://towardsdatascience.com/text-classification-with-state-of-the-art-nlp-library-flair-b541d7add21f)
 
+
+### Notes 2020-7-14
+
+- Ran into issues with comments.  A comment of "No" in comments.json was saved as "NA" in csv, this caused the Sentence(nan) to break when given a nan.
+    - Check if passing "No" causes nan issues in dataframe
+    - Check if passing "NA" causes nan issues in dataframe

@@ -4,6 +4,30 @@ from .json_utils import load_json_file, write_json_file
 from .file_utils import find
 
 
+def write_results_for_channel(channel, search_string, case_sense=True):
+    comments_dir = f"./data/{channel}/comments"
+    video_ids = os.listdir(comments_dir)
+
+    directory_format = (comments_dir + "{}/comments.json").format
+
+    write_search_results_for_ids(
+        video_ids, directory_format, search_string, case_insensitive=not case_sense
+    )
+
+
+def write_search_results_for_ids(
+    chat_ids, directory_format, search_string, case_insensitive=False, overwrite=False
+):
+    for chat_id in chat_ids:
+        filename = directory_format(chat_id)
+        write_search_results_for_file(
+            filename,
+            search_string,
+            overwrite=overwrite,
+            case_insensitive=case_insensitive,
+        )
+
+
 def is_in_string(sub_string, super_string, case_insensitive=False):
     if case_insensitive:
         return sub_string.lower() in super_string.lower()
@@ -57,15 +81,3 @@ def write_search_results_for_file(
 
     return search_string_file
 
-
-def write_search_results_for_ids(
-    chat_ids, directory_format, search_string, case_insensitive=False, overwrite=False
-):
-    for chat_id in chat_ids:
-        filename = directory_format(chat_id)
-        write_search_results_for_file(
-            filename,
-            search_string,
-            overwrite=overwrite,
-            case_insensitive=case_insensitive,
-        )
