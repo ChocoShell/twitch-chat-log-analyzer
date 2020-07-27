@@ -13,7 +13,10 @@ class TwitchClientv5(TwitchAPI):
 
         params = {}
         if cursor is not None:
+            print(f"Downloading log for {video_id} at cursor: {cursor}")
             params["cursor"] = cursor
+        else:
+            print(f"Downloading log for {video_id} with no cursor")
 
         return self.twitch_api("GET", url, params=params)
 
