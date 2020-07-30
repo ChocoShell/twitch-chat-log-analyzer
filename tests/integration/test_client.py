@@ -15,7 +15,7 @@ class TestTwitchAPI(TestCase):
         """
         _ = TwitchClient(self.client_id, self.client_secret)
 
-    def test_get_chat_for_video(self):
+    def test_search_channels(self):
         query = "lirik"
         twitch_client = TwitchClient(self.client_id, self.client_secret)
         data = twitch_client.search_channels(query)
