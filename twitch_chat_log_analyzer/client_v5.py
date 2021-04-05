@@ -1,14 +1,17 @@
 import os
-import functools
 
-from .api_v5 import TwitchAPIv5
-from .json_utils import write_json_file
+from .apis.api_v5 import TwitchAPIv5
+from .json_utils import write_json_file, load_json_file
 
 
 class TwitchClientv5:
     def __init__(self, client_id):
         self.client_id = client_id
         self.api = TwitchAPIv5()
+
+    def combine_vod_chat_json_files(self, filelist):
+        for file in filelist:
+            _ = load_json_file(file)
 
     def download_complete_vod_chat_in_parts(self, video_id, download_dir="./", filename=None):
         vod_chat_generator = self.get_complete_vod_chat(video_id)

@@ -13,9 +13,3 @@ class TestTwitchAPIv5(TestCase):
         """Test Initialization of TwitchClientv5
         """
         _ = TwitchClientv5(self.client_id)
-
-    def test_get_chat_for_video(self):
-        video_id = "254274829"
-        twitch_client = TwitchClientv5(self.client_id)
-        data = twitch_client.get_chat_for_video(video_id)
-        self.assertIsNotNone(data)

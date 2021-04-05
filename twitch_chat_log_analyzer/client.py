@@ -1,4 +1,4 @@
-from .api import TwitchAPI
+from .apis.api import TwitchAPI
 
 
 class TwitchClient:
