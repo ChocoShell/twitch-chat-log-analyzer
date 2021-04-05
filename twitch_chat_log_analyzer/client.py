@@ -1,7 +1,4 @@
-import requests
-
 from .api import TwitchAPI
-
 
 
 class TwitchClient(TwitchAPI):
