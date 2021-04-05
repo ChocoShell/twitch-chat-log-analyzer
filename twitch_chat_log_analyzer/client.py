@@ -36,7 +36,7 @@ class TwitchClient(TwitchAPI):
     @property
     def token(self):
         if self._token is None:
-            self._token = get_twitch_oauth_token(self.client_id, self.client_secret)
+            self._token = self.get_twitch_oauth_token(self.client_id, self.client_secret)
         return self._token
 
     @property
@@ -45,33 +45,3 @@ class TwitchClient(TwitchAPI):
             "Client-ID": f"{self.client_id}",
             "Authorization": f"Bearer {self.token}",
         }
-
-
-def get_twitch_oauth_token(client_id, client_secret):
-    """Get Twitch Access Token
-
-    Args:
-        client_id (str)
-        client_secret (str):
-
-    Returns:
-        (str): OAuth Access Token
-    """
-    params = {
-        "grant_type": "client_credentials",
-        "client_id": client_id,
-        "client_secret": client_secret,
-    }
-
-    twitch_oauth_url = "https://id.twitch.tv/oauth2/token"
-
-    headers = {"Content-Type": "application/x-www-form-urlencoded"}
-
-    try:
-        response = requests.post(twitch_oauth_url, headers=headers, params=params)
-        response.raise_for_status()
-    except Exception as err:
-        print(err)
-        raise err
-
-    return response.json()["access_token"]
