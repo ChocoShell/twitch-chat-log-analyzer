@@ -50,3 +50,4 @@ def convert_comment_json_to_csv(comment_filename):
     csv_filename = os.path.join(path, csv_filename)
 
     convert_comments_to_csv(comments, csv_filename)
+    return csv_filename
