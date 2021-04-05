@@ -1,5 +1,5 @@
 from unittest import TestCase
-from twitch_chat_log_analyzer.api_v5 import TwitchClientv5
+from twitch_chat_log_analyzer.client_v5 import TwitchClientv5
 from twitch_chat_log_analyzer.json_utils import load_json_file
 
 
