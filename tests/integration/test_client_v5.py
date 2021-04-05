@@ -19,3 +19,8 @@ class TestTwitchAPIv5(TestCase):
         twitch_client = TwitchClientv5(self.client_id)
         data = twitch_client.get_chat_for_video(video_id)
         self.assertIsNotNone(data)
+
+    def test_get_clip(self):
+        twitch_client = TwitchClientv5(self.client_id)
+        data = twitch_client.get_clip("HappyCrunchyJackalVoteNay")
+        self.assertIsNotNone(data)

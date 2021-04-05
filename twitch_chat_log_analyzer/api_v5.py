@@ -4,7 +4,7 @@ import requests
 class TwitchAPIv5:
     base_twitch_url = "https://api.twitch.tv/kraken"
 
-    def get_chat_for_video(self, client_id, video_id, cursor=None):
+    def _get_chat_for_video(self, client_id, video_id, cursor=None):
 
         headers = {"Client-ID": client_id}
 
@@ -25,7 +25,7 @@ class TwitchAPIv5:
 
         return response
 
-    def get_clip(self, client_id, slug):
+    def _get_clip(self, client_id, slug):
         """Get Clip data for given slug
 
         Args:

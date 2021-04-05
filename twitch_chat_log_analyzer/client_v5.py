@@ -32,7 +32,7 @@ class TwitchClientv5(TwitchAPIv5):
                 except FileExistsError:
                     pass
                 complete_comments_data = self.fetch_all(
-                    lambda cursor: self.get_chat_for_video(self.client_id, video_id, cursor=cursor),
+                    lambda cursor: self.get_chat_for_video(video_id, cursor=cursor),
                     lambda index: f"{new_comments_dir_partial}/comments_{index}.json",
                     lambda data: data["comments"],
                     lambda data: data["_next"],
@@ -42,6 +42,12 @@ class TwitchClientv5(TwitchAPIv5):
                 )
             except Exception as err:
                 print(err)
+
+    def get_chat_for_video(self, video_id, cursor=None):
+        return self._get_chat_for_video(self.client_id, video_id, cursor=cursor)
+
+    def get_clip(self, client_id, slug):
+        return self._get_clip(slug)
 
     @staticmethod
     def fetch_all(api_function, file_format, get_data, get_updator, updator=None):
