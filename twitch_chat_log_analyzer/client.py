@@ -48,49 +48,6 @@ class TwitchClient(TwitchAPI):
             "Authorization": f"Bearer {self.token}",
         }
 
-    def search_channels(self, query):
-        url = f"{base_twitch_url}search/channels"
-        params = {
-            "query": query,
-        }
-
-        return self.twitch_api("GET", url, params=params)
-
-    def get_videos(self, ids=None, user_id=None, game_id=None, **optional_query_params):
-        """Get list of video metadata
-
-        Args:
-            ids (List[str], optional): List of video ID numbers as strings. Defaults to None.
-            user_id (str, optional): User ID to pull videos from. Defaults to None.
-            game_id (str, optional): Game ID to pull videos from. Defaults to None.
-
-        Raises:
-            Exception: Raised when all args are None
-
-        Returns:
-            List[dict]: List of dictionaries containing video metadata
-        """
-        if ids is None and user_id is None and game_id is None:
-            raise Exception("Missing required query param: (ids, user_id, or game_id)")
-
-        url = f"{base_twitch_url}videos"
-
-        params = {**optional_query_params}
-
-        if ids is not None:
-            if isinstance(ids, str):
-                params["id"] = ids
-            else:
-                params["id"] = ",".join(ids)
-
-        if user_id is not None:
-            params["user_id"] = user_id
-
-        if game_id is not None:
-            params["game_id"] = game_id
-
-        return self.twitch_api("GET", url, params=params)
-
 
 def get_twitch_oauth_token(client_id, client_secret):
     """Get Twitch Access Token

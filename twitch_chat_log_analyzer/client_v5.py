@@ -1,24 +1,12 @@
 import os
 
-from .api import TwitchAPI
+from .api_v5 import TwitchAPIv5
 from .json_utils import write_json_file
 
 
-class TwitchClientv5(TwitchAPI):
+class TwitchClientv5(TwitchAPIv5):
     def __init__(self, client_id):
         self.headers = {"Client-id": client_id}
-
-    def get_chat_for_video(self, video_id, cursor=None):
-        url = f"https://api.twitch.tv/v5/videos/{video_id}/comments"
-
-        params = {}
-        if cursor is not None:
-            print(f"Downloading log for {video_id} at cursor: {cursor}")
-            params["cursor"] = cursor
-        else:
-            print(f"Downloading log for {video_id} with no cursor")
-
-        return self.twitch_api("GET", url, params=params)
 
     def download_vod_chat(self, video_ids, download_dir="./", verbose=True):
         if verbose:
