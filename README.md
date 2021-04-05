@@ -81,3 +81,9 @@ Getting Chat Logs from VODs
 - Created Client and API files.  Having second thoughts since it seems like they do the same thing but the client has too much functionality.  Specifically the download vod chat style functions.
 
 Thinking about removing API files and having everything be in the client.
+
+### Notes 2020-11-25
+
+- Added tools for other project (Among Us Game Detector)
+- Should move twitch APIs into it's own project
+- Should clean up twitchAPI object so you don't have to set headers outside of class construction.
