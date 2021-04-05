@@ -1,15 +1,5 @@
 # Twitch Chat Log Analyzer
 
-## Pull Ludwig Chat Advice
-
-1. Ludwig has Good Advice on marketing 
-2. Ludwig doesn't mark when he gives good marketing advice 
-3. Chat is predictable 
-4. Chat will spam pepoG when Ludwig is giving marketing advice 
-
-So, I can download the chat logs/VODs, search for pepoG and pull out timestamps for good ludwig advice.
-Getting Chat Logs from VODs
-
 Twitch VODs stay for 60 days
 
 ## Steps
@@ -51,6 +41,7 @@ Ideas
 - [x] Implement [Burst Detection](https://nikkimarinsek.com/blog/kleinberg-burst-detection-algorithm)
     - Note: Wasn't very useful because it didn't give weights to burst.  It gives a levels for higher bursts so some weight calculation can be made.  Good for creating clips though.
     - Note: Used the FIRST algo in the paper, not the second one created by poster.
+- [ ] Create Word Cloud of comments
 
 NLP Ideas
 
@@ -66,3 +57,21 @@ use those to train a text classifier to find other chats.](https://towardsdatasc
 - Ran into issues with comments.  A comment of "No" in comments.json was saved as "NA" in csv, this caused the Sentence(nan) to break when given a nan.
     - Check if passing "No" causes nan issues in dataframe
     - Check if passing "NA" causes nan issues in dataframe
+
+## Experiments
+
+### Experiment 1: Pull Ludwig Chat for Marketing Advice
+
+#### Hypothesis
+
+1. Ludwig has Good Advice on marketing
+2. Ludwig doesn't mark when he gives good marketing advice
+3. Chat is predictable
+4. Chat will spam pepoG when Ludwig is giving marketing advice
+
+So, I can download the chat logs/VODs, search for pepoG and pull out timestamps for good ludwig advice.
+Getting Chat Logs from VODs
+
+### Experiment 2: Create Word Cloud to Gain Comment Insight
+
+1. Word Cloud should help show most common words like emotes.
