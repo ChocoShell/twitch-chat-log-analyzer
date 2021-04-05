@@ -6,7 +6,7 @@ from .json_utils import write_json_file
 
 class TwitchClientv5(TwitchAPIv5):
     def __init__(self, client_id):
-        self.headers = {"Client-id": client_id}
+        self.client_id = client_id
 
     def download_vod_chat(self, video_ids, download_dir="./", verbose=True):
         if verbose:
@@ -32,7 +32,7 @@ class TwitchClientv5(TwitchAPIv5):
                 except FileExistsError:
                     pass
                 complete_comments_data = self.fetch_all(
-                    lambda cursor: self.get_chat_for_video(video_id, cursor=cursor),
+                    lambda cursor: self.get_chat_for_video(self.client_id, video_id, cursor=cursor),
                     lambda index: f"{new_comments_dir_partial}/comments_{index}.json",
                     lambda data: data["comments"],
                     lambda data: data["_next"],
