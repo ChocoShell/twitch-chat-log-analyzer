@@ -3,8 +3,6 @@ import requests
 from .api import TwitchAPI
 
 
-base_twitch_url = "https://api.twitch.tv/helix/"
-
 
 class TwitchClient(TwitchAPI):
     """
