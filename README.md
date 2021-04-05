@@ -33,11 +33,12 @@ Twitch VODs stay for 60 days
 1. Fetch rechat logs using this answer [Get Chat Replay Transcript](https://discuss.dev.twitch.tv/t/getting-chat-replay-transcript/5295/2)
     - Chat replays may not work so try this first honestly.
 
-### Save data in csv form for datasets instead of json.
+### Save data in csv form for datasets
 
 1. Create resources/models for comments
 2. Save `Comment` model rows as csv for ease of use with pandas dataframes
 3. Save Date as well as VOD id
+4. Convert json to csv
 
 ### Analyzing Data
 
@@ -45,4 +46,14 @@ Twitch VODs stay for 60 days
 2. Determine how much of chat is noise?
 3. Compare viewers with chat
 
-Need to brainstorm more ideas on analyzing chat
+Ideas
+
+- Implement [Burst Detection](https://nikkimarinsek.com/blog/kleinberg-burst-detection-algorithm)
+
+NLP Ideas
+
+- [Create a topic model and see what topics it generates that
+correlate to what you're looking for.](https://towardsdatascience.com/text-classification-with-state-of-the-art-nlp-library-flair-b541d7add21f)
+- [Find examples of chats that fit the topics you are looking for and
+use those to train a text classifier to find other chats.](https://towardsdatascience.com/covid-19-with-a-flair-2802a9f4c90f)
+
