@@ -86,11 +86,10 @@ def plot_timestamp_comparisons(
     plt.savefig(figure_filename)
 
 
-def save_plots_from_comment_comparisons_for_search_string_from_dir(
+def save_plots_from_comments_for_search_string_from_dir(
     video_id, search_string, figure_filename=None, overwrite=False, step_size=5 * 60, file_dir="./"
 ):
     search_string_filename = f"{search_string}_comments.json"
-    # comments_filename = "comments.json"
 
     search_string_file = os.path.join(file_dir, search_string_filename)
     if not os.path.isfile(search_string_file):
@@ -111,13 +110,34 @@ def save_plots_from_comment_comparisons_for_search_string_from_dir(
         step_size=step_size,
     )
 
-    # plot_timestamp_comparisons_from_files(
-    #     search_string_filename,
-    #     comments_filename,
-    #     figure_filename,
-    #     file_dir=file_dir,
-    #     step_size=step_size,
-    # )
+    plt.close("all")
+
+
+def save_plots_from_comment_comparisons_for_search_string_from_dir(
+    video_id, search_string, figure_filename=None, overwrite=False, step_size=5 * 60, file_dir="./"
+):
+    search_string_filename = f"{search_string}_comments.json"
+    comments_filename = "comments.json"
+
+    search_string_file = os.path.join(file_dir, search_string_filename)
+    if not os.path.isfile(search_string_file):
+        print(f"{search_string_file} does not exit")
+        return
+
+    if figure_filename is None:
+        figure_filename = f"{video_id}_{search_string}_{step_size//60}m.png"
+
+    if os.path.isfile(figure_filename) and not overwrite:
+        print(f"{figure_filename} exists")
+        return
+
+    plot_timestamp_comparisons_from_files(
+        search_string_filename,
+        comments_filename,
+        figure_filename,
+        file_dir=file_dir,
+        step_size=step_size,
+    )
 
     plt.close("all")
 

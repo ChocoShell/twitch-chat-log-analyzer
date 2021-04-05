@@ -86,17 +86,35 @@ class Comment(BaseModel):
 class FilteredComment(BaseModel):
     def __init__(self, data: Dict[str, Any]):
         super().__init__(data)
+
+        self.id: str = data.get("_id")
         self.created_at: str = data.get("created_at")
+        self.updated_at: str = data.get("updated_at")
+        self.channel_id: str = data.get("channel_id")
+        self.content_type: str = data.get("content_type")
         self.content_id: str = data.get("content_id")
         self.content_offset_seconds: float = data.get("content_offset_seconds")
-        self.commenter: str = Commenter(data.get("commenter")).display_name
-        self.message: str = Message(data.get("message")).body
+        self.commenter_display_name: str = data.get("commenter").get("display_name")
+        self.commenter_id: str = data.get("commenter").get("_id")
+
+        self.source: str = data.get("source")
+        self.state: str = data.get("state")
+        self.more_replies: bool = data.get("more_replies")
+        self.body: Message = Message(data.get("message")).body
 
     def dict(self):
         return {
+            "id": self.id,
             "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "channel_id": self.channel_id,
+            "content_type": self.content_type,
             "content_id": self.content_id,
             "content_offset_seconds": self.content_offset_seconds,
-            "commenter": self.commenter,
-            "message": self.message,
+            "commenter_display_name": self.commenter_display_name,
+            "commenter_id": self.commenter_id,
+            "source": self.source,
+            "state": self.state,
+            "more_replies": self.more_replies,
+            "body": self.body,
         }
