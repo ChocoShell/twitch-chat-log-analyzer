@@ -71,10 +71,7 @@ class TwitchAPI(BaseAPI):
         params = {**optional_query_params}
 
         if ids is not None:
-            if isinstance(ids, str):
-                params["id"] = ids
-            else:
-                params["id"] = ",".join(ids)
+            params["id"] = ids if isinstance(ids, str) else ",".join(ids)
 
         if user_id is not None:
             params["user_id"] = user_id
