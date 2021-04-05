@@ -12,21 +12,18 @@ from twitch_chat_log_analyzer.json_utils import write_json_file
 from .emotes import FFZ, TWITCH, BTTV
 
 
-def main(channel_emotes):
-    # Getting Dataframe
-    filename = "./data/ludwig/comments/673772949/comments.csv"
+def sort_dict_by_values(x, descending=False):
+    return {
+        k: v for k, v in sorted(x.items(), key=lambda item: item[1], reverse=descending)
+    }
 
-    df = pd.read_csv(filename)
 
-    # Generating Wordcloud
-    text = " ".join(comment for comment in df.body)
+def get_most_common_words(comments, collocations=False, n=100):
+    text = " ".join(comment for comment in comments)
 
-    stopwords = set(STOPWORDS)
-    stopwords.update([*FFZ, *TWITCH, *BTTV, *channel_emotes])
+    most_common_words = WordCloud(stopwords=STOPWORDS, collocations=collocations).process_text(text)
 
-    wordcloud = WordCloud(stopwords=stopwords, collocations=False).generate(text)
-
-    # freq_dict = WordCloud(stopwords=stopwords, collocations=False).process_text(text)
+    return sort_dict_by_values(most_common_words, descending=True)
 
     # ffz_words = {}
     # twitch_words = {}
@@ -50,84 +47,29 @@ def main(channel_emotes):
     # Visualizing Word Cloud
     # write_json_file(freq_dict, "freq_673772949.json", sort_keys=False)
 
-    wordcloud.to_file("./no_emotes.png")
+    # wordcloud.to_file("./no_emotes.png")
 
-    # Print wordcloud
-    plt.imshow(wordcloud, interpolation="bilinear")
+    # # Print wordcloud
+    # plt.imshow(wordcloud, interpolation="bilinear")
 
-    plt.axis("off")
-    plt.show()
+    # plt.axis("off")
+    # plt.show()
+
+# bots = ["Nightbot", "StreamElements"]
+
+# no_nightbot_df = filter_out_commentors(bots)
+
+# cleaned_df = no_nightbot_df
+
+# lowered_df = filter_sub_messages(df)
+
+# # lowered_df["body"] = lowered_df.body.str.lower()
+# cleaned_subs_df = lowered_df
+# cleaned_of_subs_df = cleaned_subs_df[~cleaned_subs_df.body.str.startswith("!")]
 
 
-def sort_dict(x, descending=False):
-    return {
-        k: v for k, v in sorted(x.items(), key=lambda item: item[1], reverse=descending)
-    }
+# # Getting Dataframe
+# filename = "./comments.csv"
+# channel = "ludwig"
 
-
-ludwig = [
-    "ludwig7",
-    "ludwigA",
-    "ludwigAY",
-    "ludwigAwooga",
-    "ludwigBANGER",
-    "ludwigBRB",
-    "ludwigBan",
-    "ludwigBlanket",
-    "ludwigBoomer",
-    "ludwigC",
-    "ludwigChan",
-    "ludwigChoke",
-    "ludwigClam",
-    "ludwigCroc",
-    "ludwigCute",
-    "ludwigD",
-    "ludwigDoc",
-    "ludwigEZ",
-    "ludwigF",
-    "ludwigFC",
-    "ludwigFarm",
-    "ludwigFold",
-    "ludwigG",
-    "ludwigGamer",
-    "ludwigGun",
-    "ludwigHands",
-    "ludwigHeads",
-    "ludwigHi",
-    "ludwigHmm",
-    "ludwigHypers",
-    "ludwigIRS",
-    "ludwigJr",
-    "ludwigKiss",
-    "ludwigLove",
-    "ludwigMagnum",
-    "ludwigMald",
-    "ludwigMelvin",
-    "ludwigMilkers",
-    "ludwigNarc",
-    "ludwigNord",
-    "ludwigNyah",
-    "ludwigPants",
-    "ludwigPeepawhappy",
-    "ludwigPeepawsad",
-    "ludwigPoggert",
-    "ludwigPride",
-    "ludwigRelax",
-    "ludwigS",
-    "ludwigSmooth",
-    "ludwigSmug",
-    "ludwigStar",
-    "ludwigStinky",
-    "ludwigT",
-    "ludwigTails",
-    "ludwigU",
-    "ludwigW",
-    "ludwigWC",
-    "ludwigWow",
-    "ludwigYikes",
-    "ludwigYuck",
-    "ludwigTop",
-    "ludwigBottom",
-]
-
-main(ludwig)
+# df = pd.read_csv(filename)

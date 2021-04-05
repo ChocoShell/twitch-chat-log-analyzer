@@ -9,8 +9,8 @@ from .json_utils import load_json_file
 def range_steps(step, max_value):
     num_steps = max_value // step
     new_range = [step * i for i in range(0, int(num_steps))]
-    if max_value != num_steps * step:
-        new_range.append(num_steps * (step + 1))
+    if max_value < num_steps * step:
+        new_range.append(max_value)
     return new_range
 
 
