@@ -7,6 +7,7 @@ class ChapterNode:
     position_milliseconds: int
     duration_milliseconds: int
     display_name: str
+    game_id: str
 
 
 class VideoGQLChapters:
@@ -15,4 +16,4 @@ class VideoGQLChapters:
         self.chapters = chapters
 
     def __repr__(self):
-        return f"VideoGQLChapters: {self.video_id} - [{self.chapters}]"
+        return f"VideoGQLChapters: {self.video_id}"

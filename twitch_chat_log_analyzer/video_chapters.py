@@ -28,9 +28,11 @@ def create_chapter_node_from_dict(node):
     duration_milliseconds = node_dict["durationMilliseconds"]
     try:
         display_name = node_dict["details"]["game"]["displayName"]
+        game_id = node_dict["details"]["game"]["id"]
     except Exception:
         display_name = node_dict["description"]
+        game_id = None
 
     return ChapterNode(
-        node_id, position_milliseconds, duration_milliseconds, display_name
+        node_id, position_milliseconds, duration_milliseconds, display_name, game_id
     )

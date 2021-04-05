@@ -84,6 +84,22 @@ class TwitchAPI(BaseAPI):
 
         return self._handle_call("GET", url, params=params).json()
 
+    def get_games(
+        self, game_id=None, name=None, **optional_query_params
+    ):
+
+        url = f"{self.base_twitch_url}/games"
+
+        params = {**optional_query_params}
+
+        if game_id:
+            params["id"] = game_id
+
+        if name:
+            params["name"] = name
+
+        return self._handle_call("GET", url, params=params).json()
+
     def get_clips(
         self, broadcaster_id=None, game_id=None, clip_ids=None, **optional_query_params
     ):

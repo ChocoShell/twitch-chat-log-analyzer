@@ -24,8 +24,8 @@ class TwitchClient:
         """Stores client credentials and internal token parameter
 
         Args:
-            client_id ([type]): [descripti (])on
-            client_secret ([type]): [descripti (])on
+            client_id ([type]): [description]
+            client_secret ([type]): [description]
         """
         self.client_id = client_id
         self.client_secret = client_secret
