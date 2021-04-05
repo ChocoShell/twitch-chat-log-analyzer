@@ -29,12 +29,12 @@ def convert_comment_json_to_csv(comment_filename):
     convert_comments_to_csv(comments, csv_filename)
 
 
-def convert_channel_comments_to_csv(channel):
+def convert_channel_comments_to_csv(channel, filename):
     comments_dir = f"./data/{channel}/comments"
     video_ids = os.listdir(comments_dir)
 
     for video_id in video_ids:
-        comment_json_path = os.path.join(comments_dir, video_id, "comments.json")
+        comment_json_path = os.path.join(comments_dir, video_id, filename)
         if os.path.isfile(comment_json_path):
             convert_comment_json_to_csv(comment_json_path)
         else:
