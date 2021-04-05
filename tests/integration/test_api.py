@@ -30,3 +30,8 @@ class TestTwitchAPI(TestCase):
         broadcaster_id = "207813352"
         data = self.api.get_clips(broadcaster_id=broadcaster_id)
         self.assertIsNotNone(data)
+
+    def test_get_clips_optional_parameters(self):
+        broadcaster_id = "207813352"
+        data = self.api.get_clips(broadcaster_id=broadcaster_id, first=5)
+        self.assertIsNotNone(data)
