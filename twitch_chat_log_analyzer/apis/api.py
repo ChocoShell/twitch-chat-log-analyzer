@@ -1,3 +1,4 @@
+"""This module is an interface between the latest Twitch API and the user"""
 import requests
 
 from .base_api import BaseAPI
