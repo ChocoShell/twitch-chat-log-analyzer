@@ -44,6 +44,7 @@ class TwitchClient(TwitchAPI):
     @property
     def headers(self):
         return {
+            "Client-ID": f"{self.client_id}",
             "Authorization": f"Bearer {self.token}",
         }
 
