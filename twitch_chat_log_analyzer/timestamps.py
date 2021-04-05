@@ -30,7 +30,9 @@ def plot_timestamp(timestamp, **hist_kwargs):
     plt.hist(timestamp, **hist_kwargs)
 
 
-def plot_timestamp_from_file(filename, figure_filename, file_dir="./", step_size=5 * 60):
+def plot_timestamp_from_file(
+    filename, figure_filename, file_dir="./", step_size=5 * 60
+):
     timestamps = fetch_timestamps_from_file(filename, file_dir)
     if not timestamps:
         print("Timestamps not found")
@@ -38,10 +40,7 @@ def plot_timestamp_from_file(filename, figure_filename, file_dir="./", step_size
 
     bins = range_steps(step_size, timestamps[-1])
 
-    plot_timestamp(
-        timestamps,
-        bins=bins
-    )
+    plot_timestamp(timestamps, bins=bins)
     plt.savefig(figure_filename)
 
 
@@ -69,11 +68,7 @@ def plot_timestamp_comparisons_from_files(
     bins = range_steps(step_size, timestamps2[-1])
 
     plot_timestamp_comparisons(
-        timestamps1,
-        timestamps2,
-        figure_filename,
-        bins=bins,
-        **hist_kwargs,
+        timestamps1, timestamps2, figure_filename, bins=bins, **hist_kwargs,
     )
 
 
@@ -87,7 +82,12 @@ def plot_timestamp_comparisons(
 
 
 def save_plots_from_comments_for_search_string_from_dir(
-    video_id, search_string, figure_filename=None, overwrite=False, step_size=5 * 60, file_dir="./"
+    video_id,
+    search_string,
+    figure_filename=None,
+    overwrite=False,
+    step_size=5 * 60,
+    file_dir="./",
 ):
     search_string_filename = f"{search_string}_comments.json"
 
@@ -104,17 +104,19 @@ def save_plots_from_comments_for_search_string_from_dir(
         return
 
     plot_timestamp_from_file(
-        search_string_filename,
-        figure_filename,
-        file_dir=file_dir,
-        step_size=step_size,
+        search_string_filename, figure_filename, file_dir=file_dir, step_size=step_size,
     )
 
     plt.close("all")
 
 
 def save_plots_from_comment_comparisons_for_search_string_from_dir(
-    video_id, search_string, figure_filename=None, overwrite=False, step_size=5 * 60, file_dir="./"
+    video_id,
+    search_string,
+    figure_filename=None,
+    overwrite=False,
+    step_size=5 * 60,
+    file_dir="./",
 ):
     search_string_filename = f"{search_string}_comments.json"
     comments_filename = "comments.json"

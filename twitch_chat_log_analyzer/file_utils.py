@@ -26,8 +26,7 @@ def format_folder_structure(video_ids, comments_dir):
         except FileExistsError:
             pass
         filtered_paths = filter(
-            lambda path: dir_name not in path,
-            find("comments_*.json", video_path),
+            lambda path: dir_name not in path, find("comments_*.json", video_path),
         )
         for path in filtered_paths:
             cur_dir, filename = os.path.split(path)
