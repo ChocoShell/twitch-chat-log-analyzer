@@ -1,6 +1,10 @@
 import requests
 
 
+class BaseAPIException(Exception):
+    pass
+
+
 class BaseAPI:
     def _handle_call(self, method, url, **kwargs):
         try:
@@ -8,6 +12,6 @@ class BaseAPI:
             response.raise_for_status()
         except Exception as err:
             print(err)
-            raise err
+            raise BaseAPIException(err)
 
         return response

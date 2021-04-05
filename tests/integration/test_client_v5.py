@@ -10,6 +10,5 @@ class TestTwitchAPIv5(TestCase):
         cls.client_id = data["client_id"]
 
     def test_initialize(self):
-        """Test Initialization of TwitchClientv5
-        """
+        """Test Initialization of TwitchClientv5"""
         _ = TwitchClientv5(self.client_id)

@@ -34,9 +34,9 @@ class Fragment:
         self.data: Dict[str, Any] = data
 
         self.text: str = data.get("text")
-        self.emoticon: Optional[Emoticon] = Emoticon(data.get("emoticon")) if data.get(
-            "emoticon"
-        ) else None
+        self.emoticon: Optional[Emoticon] = (
+            Emoticon(data.get("emoticon")) if data.get("emoticon") else None
+        )
 
 
 class UserBadge:

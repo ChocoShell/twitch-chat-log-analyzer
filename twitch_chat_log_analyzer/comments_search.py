@@ -5,6 +5,20 @@ from .file_utils import find
 
 
 def write_results_for_channel(channel, search_string, case_sense=True):
+    """
+    Selects comments directory given channel
+    Gets list of video ids by reading folders under comments directory
+    Creates a filename format for comments
+
+    Writes search results based on listed folders, filename format, and search string
+
+    Also passes on case sensitivity
+
+    Args:
+        channel ([type]): [description]
+        search_string ([type]): [description]
+        case_sense (bool, optional): [description]. Defaults to True.
+    """
     comments_dir = f"./data/{channel}/comments"
     video_ids = os.listdir(comments_dir)
 
@@ -28,37 +42,6 @@ def write_search_results_for_ids(
         )
 
 
-def is_in_string(sub_string, super_string, case_insensitive=False):
-    if case_insensitive:
-        return sub_string.lower() in super_string.lower()
-    else:
-        return sub_string in super_string
-
-
-# Search comments
-def search_chat(comments, search_string, case_insensitive=False):
-    results = []
-    for comment in comments:
-        if is_in_string(
-            search_string, comment["message"]["body"], case_insensitive=case_insensitive
-        ):
-            results.append(comment)
-    return results
-
-
-def search_chat_from_file(filename, search_string, case_insensitive=False):
-    comments = load_json_file(filename)
-    return search_chat(comments, search_string, case_insensitive=case_insensitive)
-
-
-def search_chat_dir(chat_dir, search_string):
-    # Search chat_dir for .jsons
-    chat_files = find("*.json", chat_dir)
-
-    for filename in chat_files:
-        search_chat_from_file(filename, search_string)
-
-
 def write_search_results_for_file(
     comments_path, search_string, overwrite=False, case_insensitive=False
 ):
@@ -80,3 +63,34 @@ def write_search_results_for_file(
     write_json_file(search_results, search_string_file)
 
     return search_string_file
+
+
+def search_chat_dir(chat_dir, search_string):
+    # Search chat_dir for .jsons
+    chat_files = find("*.json", chat_dir)
+
+    for filename in chat_files:
+        search_chat_from_file(filename, search_string)
+
+
+def search_chat_from_file(filename, search_string, case_insensitive=False):
+    comments = load_json_file(filename)
+    return search_chat(comments, search_string, case_insensitive=case_insensitive)
+
+
+# Search comments
+def search_chat(comments, search_string, case_insensitive=False):
+    results = []
+    for comment in comments:
+        if is_in_string(
+            search_string, comment["message"]["body"], case_insensitive=case_insensitive
+        ):
+            results.append(comment)
+    return results
+
+
+def is_in_string(sub_string, super_string, case_insensitive=False):
+    if case_insensitive:
+        return sub_string.lower() in super_string.lower()
+    else:
+        return sub_string in super_string

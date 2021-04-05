@@ -13,7 +13,9 @@ class TwitchClientv5:
         for file in filelist:
             _ = load_json_file(file)
 
-    def download_complete_vod_chat_in_parts(self, video_id, download_dir="./", filename=None):
+    def download_complete_vod_chat_in_parts(
+        self, video_id, download_dir="./", filename=None
+    ):
         vod_chat_generator = self.get_complete_vod_chat(video_id)
 
         for i, chat_page in enumerate(vod_chat_generator):
@@ -27,7 +29,9 @@ class TwitchClientv5:
         yield data
 
         while cursor:
-            data = self.api.get_chat_for_video(self.client_id, video_id, cursor=cursor).json()
+            data = self.api.get_chat_for_video(
+                self.client_id, video_id, cursor=cursor
+            ).json()
             cursor = data.get("_next")
             yield data
 

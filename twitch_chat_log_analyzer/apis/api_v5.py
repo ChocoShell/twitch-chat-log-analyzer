@@ -10,7 +10,7 @@ class TwitchAPIv5:
         Args:
             client_id (str): client id for authorization
             video_id (str): Twitch VOD id
-            cursor (str, optional): The pagination cursor of where to pick up from. Defaults to None.
+            cursor (str, optional): The pagination cursor of where to pick up from.
 
         Raises:
             err: Error raised during Response
@@ -53,10 +53,7 @@ class TwitchAPIv5:
         """
         url = f"{self.base_twitch_url}/clips/{slug}"
 
-        headers = {
-            "Accept": "application/vnd.twitchtv.v5+json",
-            "Client-ID": client_id
-        }
+        headers = {"Accept": "application/vnd.twitchtv.v5+json", "Client-ID": client_id}
 
         try:
             response = requests.get(url, headers=headers)

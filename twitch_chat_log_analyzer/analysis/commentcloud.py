@@ -21,7 +21,9 @@ def sort_dict_by_values(x, descending=False):
 def get_most_common_words(comments, collocations=False, n=100):
     text = " ".join(comment for comment in comments)
 
-    most_common_words = WordCloud(stopwords=STOPWORDS, collocations=collocations).process_text(text)
+    most_common_words = WordCloud(
+        stopwords=STOPWORDS, collocations=collocations
+    ).process_text(text)
 
     return sort_dict_by_values(most_common_words, descending=True)
 
@@ -54,6 +56,7 @@ def get_most_common_words(comments, collocations=False, n=100):
 
     # plt.axis("off")
     # plt.show()
+
 
 # bots = ["Nightbot", "StreamElements"]
 

@@ -68,7 +68,11 @@ def plot_timestamp_comparisons_from_files(
     bins = range_steps(step_size, timestamps2[-1])
 
     plot_timestamp_comparisons(
-        timestamps1, timestamps2, figure_filename, bins=bins, **hist_kwargs,
+        timestamps1,
+        timestamps2,
+        figure_filename,
+        bins=bins,
+        **hist_kwargs,
     )
 
 
@@ -104,7 +108,10 @@ def save_plots_from_comments_for_search_string_from_dir(
         return
 
     plot_timestamp_from_file(
-        search_string_filename, figure_filename, file_dir=file_dir, step_size=step_size,
+        search_string_filename,
+        figure_filename,
+        file_dir=file_dir,
+        step_size=step_size,
     )
 
     plt.close("all")

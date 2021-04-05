@@ -19,6 +19,7 @@ class TwitchClient:
             ids=None, user_id=None, game_id=None, **optional_query_params
         ): Returns list of video metadata for given search parameters
     """
+
     def __init__(self, client_id, client_secret):
         """Stores client credentials and internal token parameter
 
@@ -34,7 +35,9 @@ class TwitchClient:
     @property
     def token(self):
         if self._token is None:
-            self._token = self.api.get_twitch_oauth_token(self.client_id, self.client_secret)
+            self._token = self.api.get_twitch_oauth_token(
+                self.client_id, self.client_secret
+            )
         return self._token
 
     @property

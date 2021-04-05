@@ -11,6 +11,5 @@ class TestTwitchAPI(TestCase):
         cls.client_secret = data["client_secret"]
 
     def test_initialize(self):
-        """Test Initialization of TwitchClient
-        """
+        """Test Initialization of TwitchClient"""
         _ = TwitchClient(self.client_id, self.client_secret)

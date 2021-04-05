@@ -84,7 +84,9 @@ class TwitchAPI(BaseAPI):
 
         return self._handle_call("GET", url, params=params).json()
 
-    def get_clips(self, broadcaster_id=None, game_id=None, clip_ids=None, **optional_query_params):
+    def get_clips(
+        self, broadcaster_id=None, game_id=None, clip_ids=None, **optional_query_params
+    ):
         """Gets clip information by clip ID (one or more),
             broadcaster ID (one only), or game ID (one only).
 
