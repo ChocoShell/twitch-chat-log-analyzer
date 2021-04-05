@@ -1,5 +1,9 @@
 # Twitch Chat Log Analyzer
 
+[![Sourcery](https://img.shields.io/badge/Sourcery-enabled-brightgreen)](https://sourcery.ai)
+
+## Concerns
+
 Twitch VODs stay for 60 days
 
 ## Steps

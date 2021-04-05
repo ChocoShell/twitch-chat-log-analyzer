@@ -1,7 +1,7 @@
 import os
 
 from .apis.api_v5 import TwitchAPIv5
-from .json_utils import write_json_file, load_json_file
+from twitch_chat_log_analyzer.json_utils import write_json_file, load_json_file
 
 
 class TwitchClientv5:
@@ -81,17 +81,17 @@ class TwitchClientv5:
                 print(err)
 
     @staticmethod
-    def fetch_all(get_data, get_filename, format_data, get_next, updator=None):
+    def fetch_all(get_data, get_filename, format_data, get_next, updater=None):
         """While get_next continues to return valid value, run get_data on next
         value. Then write this data to a new function determined by get_filename.
         Then return the formatted data back.
 
         Args:
-            get_data (func): Gets data given updator
+            get_data (func): Gets data given updater
             get_filename (func): Gets filename to write data to
             format_data (func): format data for
             get_next (func): [description]
-            updator (Any, optional): [description]. Defaults to None.
+            updater (Any, optional): [description]. Defaults to None.
 
         Returns:
             [type]: [description]
@@ -100,13 +100,13 @@ class TwitchClientv5:
         complete_data = []
         index = 0
         while fetch:
-            data = get_data(updator)
+            data = get_data(updater)
             write_json_file(data, get_filename(index))
 
             complete_data += format_data(data)
             index += 1
             try:
-                updator = get_next(data)
+                updater = get_next(data)
             except Exception:
                 fetch = False
         return complete_data

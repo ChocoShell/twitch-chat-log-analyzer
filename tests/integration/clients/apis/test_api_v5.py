@@ -1,13 +1,12 @@
 from unittest import TestCase
-from twitch_chat_log_analyzer.apis.api_v5 import TwitchAPIv5
-from twitch_chat_log_analyzer.json_utils import load_json_file
+from twitch_chat_log_analyzer.clients.apis.api_v5 import TwitchAPIv5
+from ...utils import load_creds
 
 
 class TestTwitchAPI(TestCase):
     @classmethod
     def setUpClass(cls):
-        data = load_json_file("creds.json")
-        cls.client_id = data["client_id"]
+        cls.client_id, _, _ = load_creds()
         cls.api = TwitchAPIv5()
 
     def test_get_chat_for_video(self):

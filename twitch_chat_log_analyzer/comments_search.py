@@ -80,13 +80,15 @@ def search_chat_from_file(filename, search_string, case_insensitive=False):
 
 # Search comments
 def search_chat(comments, search_string, case_insensitive=False):
-    results = []
-    for comment in comments:
+    return [
+        comment
+        for comment in comments
         if is_in_string(
-            search_string, comment["message"]["body"], case_insensitive=case_insensitive
-        ):
-            results.append(comment)
-    return results
+            search_string,
+            comment["message"]["body"],
+            case_insensitive=case_insensitive,
+        )
+    ]
 
 
 def is_in_string(sub_string, super_string, case_insensitive=False):

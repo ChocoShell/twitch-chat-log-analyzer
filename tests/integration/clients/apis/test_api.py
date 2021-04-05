@@ -1,14 +1,12 @@
 from unittest import TestCase
-from twitch_chat_log_analyzer.apis.api import TwitchAPI
-from twitch_chat_log_analyzer.json_utils import load_json_file
+from twitch_chat_log_analyzer.clients.apis.api import TwitchAPI
+from ...utils import load_creds
 
 
 class TestTwitchAPI(TestCase):
     @classmethod
     def setUpClass(cls):
-        data = load_json_file("creds.json")
-        client_id = data["client_id"]
-        client_secret = data["client_secret"]
+        client_id, client_secret, _ = load_creds()
         token = TwitchAPI.get_twitch_oauth_token(client_id, client_secret)
         cls.api = TwitchAPI()
         cls.api.headers = {

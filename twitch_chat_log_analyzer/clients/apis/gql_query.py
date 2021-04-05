@@ -8,7 +8,6 @@ class TwitchGQLQuery:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:83.0) Gecko/20100101 Firefox/83.0",
             "Accept": "*/*",
             "Accept-Language": "en-US",
-            # "Referer": "https://www.twitch.tv/videos/812219766",
             "Client-Id": client_id,
             "Content-Type": "text/plain;charset=UTF-8",
             "Origin": "https://www.twitch.tv",
@@ -23,7 +22,7 @@ class TwitchGQLQuery:
 
         self.url = "https://gql.twitch.tv/gql#origin=twilight"
 
-    def generate_video_chapter_gql_query(self, video_id):
+    def generate_video_chapters_for_video_id(self, video_id):
         query = [
             {
                 "operationName": "VideoPlayer_ChapterSelectButtonVideo",
@@ -39,5 +38,5 @@ class TwitchGQLQuery:
         return json.dumps(query)
 
     def get_chapters_from_video_id(self, video_id):
-        body = self.generate_video_chapter_gql_query(video_id)
+        body = self.generate_video_chapters_for_video_id(video_id)
         return requests.post(self.url, headers=self.headers, data=body)
