@@ -14,9 +14,3 @@ class TestTwitchAPI(TestCase):
         """Test Initialization of TwitchClient
         """
         _ = TwitchClient(self.client_id, self.client_secret)
-
-    def test_search_channels(self):
-        query = "lirik"
-        twitch_client = TwitchClient(self.client_id, self.client_secret)
-        data = twitch_client.search_channels(query)
-        self.assertIsNotNone(data)

@@ -4,7 +4,20 @@ import requests
 class TwitchAPIv5:
     base_twitch_url = "https://api.twitch.tv/kraken"
 
-    def _get_chat_for_video(self, client_id, video_id, cursor=None):
+    def get_chat_for_video(self, client_id, video_id, cursor=None):
+        """Get VOD Chat
+
+        Args:
+            client_id (str): client id for authorization
+            video_id (str): Twitch VOD id
+            cursor (str, optional): The pagination cursor of where to pick up from. Defaults to None.
+
+        Raises:
+            err: Error raised during Response
+
+        Returns:
+            response: Response Object
+        """
 
         headers = {"Client-ID": client_id}
 
@@ -25,7 +38,7 @@ class TwitchAPIv5:
 
         return response
 
-    def _get_clip(self, client_id, slug):
+    def get_clip(self, client_id, slug):
         """Get Clip data for given slug
 
         Args:

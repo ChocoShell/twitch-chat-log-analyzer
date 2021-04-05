@@ -1,7 +1,7 @@
 from .api import TwitchAPI
 
 
-class TwitchClient(TwitchAPI):
+class TwitchClient:
     """
     Client to connect to Twitch API from April 30, 2020 and manage OAuth
 
@@ -29,11 +29,12 @@ class TwitchClient(TwitchAPI):
         self.client_id = client_id
         self.client_secret = client_secret
         self._token = None
+        self.api = TwitchAPI()
 
     @property
     def token(self):
         if self._token is None:
-            self._token = self.get_twitch_oauth_token(self.client_id, self.client_secret)
+            self._token = self.api.get_twitch_oauth_token(self.client_id, self.client_secret)
         return self._token
 
     @property

@@ -75,3 +75,9 @@ Getting Chat Logs from VODs
 ### Experiment 2: Create Word Cloud to Gain Comment Insight
 
 1. Word Cloud should help show most common words like emotes.
+
+## API Development
+
+- Created Client and API files.  Having second thoughts since it seems like they do the same thing but the client has too much functionality.  Specifically the download vod chat style functions.
+
+Thinking about removing API files and having everything be in the client.
